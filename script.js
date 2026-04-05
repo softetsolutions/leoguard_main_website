@@ -1,17 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // 1. Loading Screen
-  const loader = document.getElementById("loader");
-  if (loader) {
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        loader.classList.add("hide");
-        setTimeout(() => {
-          loader.style.display = "none";
-        }, 500);
-      }, 800);
-    });
-  }
-
   // 2. Mobile Navigation
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("navMenu");
@@ -53,23 +40,23 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
     toggle.addEventListener("click", (e) => {
       if (window.innerWidth <= 968) {
-        e.preventDefault(); 
+        e.preventDefault();
         const dropdown = toggle.closest(".dropdown");
         dropdown.classList.toggle("active");
       }
     });
   });
 
-  // FIX: Close mobile menu when a nav link is tapped, but wait 150ms 
+  // FIX: Close mobile menu when a nav link is tapped, but wait 150ms
   // so the browser can execute the actual link navigation before disappearing.
   document.querySelectorAll(".nav-menu a").forEach((link) => {
     link.addEventListener("click", (e) => {
       const isDropdownToggle = link.classList.contains("dropdown-toggle");
       if (window.innerWidth <= 968 && !isDropdownToggle) {
         setTimeout(() => {
-            closeMobileMenu();
+          closeMobileMenu();
         }, 150);
-      } 
+      }
     });
   });
 
@@ -143,12 +130,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // FIX: Allow navbar category links to switch tabs smoothly while already on categories.html
-  window.addEventListener('hashchange', () => {
-    if (window.location.pathname.includes('categories.html') || window.location.pathname.endsWith('categories')) {
-        const hashTarget = window.location.hash.substring(1);
-        if(hashTarget) {
-           activateCategory(hashTarget);
-        }
+  window.addEventListener("hashchange", () => {
+    if (
+      window.location.pathname.includes("categories.html") ||
+      window.location.pathname.endsWith("categories")
+    ) {
+      const hashTarget = window.location.hash.substring(1);
+      if (hashTarget) {
+        activateCategory(hashTarget);
+      }
     }
   });
 
@@ -165,10 +155,10 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const target = btn.getAttribute("data-target");
       activateCategory(target);
-      if(history.pushState) {
-          history.pushState(null, null, `#${target}`);
+      if (history.pushState) {
+        history.pushState(null, null, `#${target}`);
       } else {
-          window.location.hash = target;
+        window.location.hash = target;
       }
     });
   });
@@ -199,8 +189,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "Follistore Hair Growth Serum": {
       name: "Follistore Hair Growth Serum",
       img: "assets/folistore.png",
-      composition:
-        "Aqua, Propolis 2%, Burgoon Up 3%, Anjaniq 3%, Biotin 2% (Contains: Amino Acids, Minerals, Vitamins)",
+      composition: `Aqua, Procapil 2%, Burgeon
+Up 3%, Anagain 3%, Baicapil 2%.Caffeine 1%,
+Redensyl 2%`,
       usage: "Apply to scalp twice daily. Massage gently.",
       indication: "For hair growth stimulation and strengthening.",
     },
@@ -208,39 +199,38 @@ document.addEventListener("DOMContentLoaded", function () {
       name: "Follistore Tablet",
       img: "assets/follistore tab.png",
       composition:
-        "Nutritional supplement with essential vitamins and minerals for hair health.",
+        "Nutritional supplements for hair growth with essential vitamins ,minerals ,amino acids and extracts.",
       usage: "Take one tablet twice daily after meals.",
       indication: "Supports hair growth and reduces hair fall.",
     },
     "Follistore Anti Hairfall Shampoo": {
-      name: "Follistore Anti Hairfall Shampoo",
+      name: "Follistore Anti Dandruff Shampoo",
       img: "assets/folistore fd.png",
-      composition: "Gentle cleansing formula with anti-hairfall properties.",
+      composition: "Ketoconazole with 2%, ZPTO 1% with conditioners",
       usage:
         "Use regularly for best results. Massage into wet hair, leave for 2-3 minutes, then rinse.",
-      indication: "Reduces hair fall, strengthens roots.",
+      indication: "Reduces dandruff, strengthens roots.",
     },
     "AD-C Nano Gel": {
       name: "AD-C Nano Gel",
       img: "assets/ad nano gel.png",
-      composition: "Adapalene 0.1% w/w + Benzoyl Peroxide (2.5% w/w)",
+      composition: "Adapalene 0.1% w/w + Clindamycin Gel 1%",
       usage:
         "Apply thin layer once daily at night on clean, dry skin. Avoid contact with eyes and mouth.",
       indication: "For acne vulgaris, comedones, and inflammatory acne.",
     },
     "AD-B Nano Gel": {
       name: "AD-B Nano Gel",
-      img: "assets/ad-bpop.png",
-      composition:
-        "Advanced acne treatment with benzoyl peroxide and adapalene combination.",
+      img: "assets/ad_b_nano_gel.png",
+      composition: "Adapalene 0.1% w/w + benzoyl peroxide 2.5%. ",
       usage: "Apply once daily at night. Use sunscreen during the day.",
       indication: "For moderate to severe acne.",
     },
     "Kojimic Soft Face Moisturiser": {
       name: "Kojimic Soft Face Moisturiser",
-      img: "assets/kojimic pro.png",
-      composition: "Lightweight moisturizer with skin brightening agents.",
-      usage: "Apply morning and evening to clean skin.",
+      img: "assets/kojimic-soft.png",
+      composition: "Ceramides, Niacinamide, Hyaluronic acid and Glutathione",
+      usage: "Apply morning and evening on clean face.",
       indication: "For hydration and even skin tone.",
     },
     "Aquastore Moisturizing Cream": {
@@ -252,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     "Aquastore SPF 50+": {
       name: "Aquastore SPF 50+",
-      img: "assets/ninja sol.png",
+      img: "",
       composition: "Broad-spectrum UVA/UVB protection with PA++++ rating.",
       usage: "Apply 15 minutes before sun exposure. Reapply every 2-3 hours.",
       indication: "Sun protection for all skin types.",
@@ -260,81 +250,89 @@ document.addEventListener("DOMContentLoaded", function () {
     "ZMM Tablets": {
       name: "ZMM Tablets",
       img: "assets/zmm tablet.png",
-      composition: "Zinc Manganese Chelating Complex",
-      usage: "Take one tablet daily with food.",
+      composition: "Zinc Monomethionine 200mg",
+      usage: "Take one  tablet once or twice daily or as directed by physcian.",
       indication: "Antioxidant support for skin health.",
     },
     "ZMM Plus": {
       name: "ZMM Plus",
       img: "assets/zmm plus.png",
-      composition: "Enhanced formulation with additional antioxidants.",
-      usage: "Take one tablet twice daily.",
+      composition:
+        "Zinc Monomethionine 200mg, D-Salina Extract, Curcumin, MSM and Multivitamin",
+      usage: "Take one tablet once or twice daily or as directed by physcian.",
       indication: "For overall skin vitality and protection.",
+    },
+    "ZMM Glow 250": {
+      name: "ZMM Glow 250",
+      img: "assets/zmm glow-250.png",
+      composition:
+        "Beta-carotene, Glutathione, Zinc, Alpha-lipoic acid, Grape seed extract & Collagen hydrolysate.",
+      usage: "Take one tablet twice daily or as directed by physician.",
+      indication: "For skin glow and anti-aging.",
     },
     "ZMM Glow": {
       name: "ZMM Glow",
-      img: "assets/zmm glow-250.png",
+      img: "assets/zmm_glow.png",
       composition:
-        "Beta-carotene, Glutathione, Caffeine, Copper, Zinc, Alpha-lipoic acid, Grape seed extract & Collagen hydrolysate.",
-      usage: "Take one tablet twice daily.",
+        "Beta-carotene, Glutathione, Alpha-lipoic acid, Pine bark extract ,Grape seed extract & Collagen hydrolysate.",
+      usage: "Take one tablet twice daily or as directed by physician.",
       indication: "For skin glow and anti-aging.",
     },
     Urtilong: {
-      name: "Urtilong",
+      name: "Urtilong-D",
       img: "assets/urtilong.png",
-      composition: "Antiallergic formulation with desloratadine.",
+      composition: "Desloratadine 5mg",
       usage: "Take as directed by physician.",
       indication: "For allergy relief.",
     },
     "Urtilong-M": {
       name: "Urtilong-M",
       img: "assets/urtilong m.png",
-      composition: "Antiallergic with minerals.",
-      usage: "Take one tablet daily.",
-      indication: "For chronic allergy symptoms.",
+      composition: "Levocetirizine 5mg, Montelukast 10mg",
+      usage: "Take as directed by physician.",
+      indication: "For chronic allergy.",
     },
     "Urtilong-DM": {
       name: "Urtilong-DM",
       img: "assets/urtiong-dm.png",
-      composition:
-        "Desloratadine Tablets (Contains: Amino Acids, Minerals, Vitamins)",
-      usage: "Take one tablet daily.",
-      indication: "For allergic rhinitis and urticaria.",
+      composition: "Desloratadine 5mg, Montelukast 10mg.",
+      usage: "Take as directed by physician.",
+      indication: "For chronic allergy.",
     },
     "Prublast Bilastine": {
       name: "Prublast Bilastine",
       img: "assets/prublast.png",
-      composition: "Bilastine 20 mg tablets.",
-      usage: "Take one tablet daily on an empty stomach.",
-      indication: "Non-sedative allergy relief.",
+      composition: "Bilastine tablets 20 mg .",
+      usage: "Take as directed by physician.",
+      indication: "For Non-sedative allergy relief.",
     },
     "ITLONG-100/200": {
       name: "ITLONG-100/200",
       img: "assets/itlong-100.png",
       composition: "Itraconazole 100 mg / 200 mg capsules.",
       usage: "Take as prescribed by physician.",
-      indication: "Systemic antifungal treatment.",
+      indication: "For systemic antifungal treatment.",
     },
     "Ninjafine 250": {
       name: "Ninjafine 250",
-      img: "assets/kzlong soup.png",
-      composition: "Antifungal tablets.",
-      usage: "Take one tablet daily.",
+      img: "assets/ninjafine_250.png",
+      composition: "Terbinafine 250mg tablets.",
+      usage: "Take one tablet daily or as advised by physician.",
       indication: "For fungal infections.",
     },
     LZlong: {
       name: "LZlong",
       img: "assets/l z long.png",
-      composition: "Luliconazole Cream.",
+      composition: "Luliconazole Cream 1%.",
       usage: "Apply to affected area once daily.",
       indication: "For topical fungal infections.",
     },
     "ZMM-GT": {
       name: "ZMM-GT",
-      img: "assets/zmm-gtx.png",
+      img: "assets/zmm_gt.png",
       composition:
         "L-Glutathione 500 mg + Alpha lipoic acid 100 mg + Vitamin C 50 mg.",
-      usage: "Take one tablet daily.",
+      usage: "Take as prescribed by physician.",
       indication: "Skin lightening and antioxidant support.",
     },
     "ZMM-GTX": {
@@ -342,43 +340,45 @@ document.addEventListener("DOMContentLoaded", function () {
       img: "assets/zmm-gtx.png",
       composition:
         "L-Glutathione 250 mg, Tranexamic Acid 250 mg, Ascorbic Acid 500 mg.",
-      usage: "Take one tablet daily.",
+      usage: "Take as prescribed by physician.",
       indication: "Advanced skin lightening.",
     },
     "Tacrotop Forte": {
       name: "Tacrotop Forte",
       img: "assets/tacrotop.png",
       composition: "Tacrolimus 0.1% w/w.",
-      usage: "Apply thin layer twice daily. For external use only.",
+      usage:
+        "Apply thin layer twice daily or as directed by physician. For external use only.",
       indication: "Immunomodulator for atopic dermatitis.",
     },
     "Melastore Tablets": {
       name: "Melastore Tablets",
       img: "assets/melastore.png",
-      composition: "Herbal and antioxidant formulation.",
-      usage: "Take one tablet twice daily.",
-      indication: "For pigmentation disorders.",
+      composition: "Bavchi, Daruharidra, karanj, Majith, Vidang Tablets",
+      usage: "Take one tablet twice daily or as directed by physician.",
+      indication: "For Pigmentory disorders.",
     },
     "Fusileo M": {
       name: "Fusileo M",
       img: "assets/fusileo-m.png",
-      composition: "Combination cream for skin infections.",
-      usage: "Apply twice daily to affected area.",
-      indication: "For bacterial and fungal infections.",
+      composition: "Fusidic Acid and Mometasone Furoate",
+      usage: "Apply once daily to affected area or as directed by physician.",
+      indication: "For secondary bacterial infections.",
     },
     "Ninjasol-S": {
       name: "Ninjasol-S",
       img: "assets/ninja sol.png",
-      composition: "Solubilized ointment.",
-      usage: "Apply as directed.",
+      composition: "Halobetasol propionate and Salicylic acid.",
+      usage: "Apply as directed by physician.",
       indication: "For topical applications.",
     },
     "ZMM-Cal": {
       name: "ZMM-Cal",
       img: "assets/zmm-cal.png",
-      composition: "Calcium Gluconate 1000 mg + Magnesium Sulfate 200 mg.",
-      usage: "Take one tablet twice daily.",
-      indication: "Calcium and magnesium supplementation.",
+      composition:
+        "Calcium Citrate Malate, Vitamin D3, Methylcobalamin, Vitamin K2-7, Zinc and Magnesium.",
+      usage: "Take one tablet daily or as directed by physician.",
+      indication: "Calcium supplement for healthy bones",
     },
   };
 
