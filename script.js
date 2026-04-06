@@ -380,6 +380,23 @@ Redensyl 2%`,
       usage: "Take one tablet daily or as directed by physician.",
       indication: "Calcium supplement for healthy bones",
     },
+    "Kojimic Pro": {
+      name: "Kojimic Pro",
+      img: "assets/kojimic pro.png",
+      composition:
+        "Glycolic acid 10% (Added as Glycolic Acid 100% Solutions),Tranexamic Acid, Allantoin & Vitamin E",
+      usage: "As directed by physician",
+      indication: "Improves Skin Tone, Glow and Radiance",
+    },
+    "Kojimic Lite": {
+      name: "Kojimic Lite",
+      img: "assets/kojimic light.png",
+      composition:
+        "Kojic Acid 2%, Vitamin E 1%, Marshmallow 0.5%, Glycolic 2% & Niacinamide 5%",
+      usage: "As directed by physician",
+      indication:
+        "Improves Deep hydration & Renews Skin, Brightens & Evens Skin tone, Gently Exfoliates",
+    },
   };
 
   function showProductDetails(productName) {

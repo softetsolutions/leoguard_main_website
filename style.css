@@ -970,3 +970,7 @@ button,
   display: flex;
   align-items: flex-end;
 }
+
+.margin-4 {
+  margin-top: 0.8rem;
+}
